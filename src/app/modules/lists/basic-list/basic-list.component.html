@@ -1,0 +1,47 @@
+<!-- BLOQUE DE DIRECTIVAS DE ATRIBUTO -->
+<p [ngStyle]="{color: 'green', fontWeight: 'bolder'}">Lista de elementos:</p>
+<p ngClass="underlined">Aquí vamos a iterar sobre una lista y mostrar varios elementos</p>
+<p [ngClass]="['underlined', 'small']">Aun no tienes elementos en la lista</p>
+<p [ngClass]="{underlined: false, small: true}">Aun no tienes elementos en la lista</p>
+
+<!-- BLOQUE DE DIRECTIVAS ESTRUCTURALES -->
+<!-- NG-IF -->
+<button (click)="cambiarCargando()">
+    {{ cargando ? 'Terminar Carga' : 'Iniciar Carga' }}
+</button>
+
+<ng-container *ngIf="!cargando; else templateEspera">
+    <p>Todo Listo!</p>
+</ng-container>
+
+<ng-template #templateEspera>
+    <p>Espere a que termine el proceso</p>
+</ng-template>
+
+<!-- NG-FOR -->
+<!-- El i representa el indice generado por cada iteración. -->
+<!-- El even identifica si el indice generado por cada iteración es par o no. -->
+<div *ngFor="let producto of listaElementos; let i = index; let even = even">
+    <div [ngStyle]="even ? {backgroundColor: 'blue', color: 'white'} : {backgroundColor: 'green', color: 'white'}">
+        <p>ID: {{ i + 1 }}</p>
+        <p>{{ producto.nameProduct }} - $ {{ producto.price }}</p>
+        <p>{{ producto.description }}</p>
+    </div>
+</div>
+
+<!-- NG-SWITCH -->
+<div [ngSwitch]="opcion">
+    <p [id]="1" *ngSwitchCase="1">Has escogido la Opción 1</p>
+    <p [id]="2" *ngSwitchCase="2">Has escogido la Opción 2</p>
+    <p [id]="3" *ngSwitchCase="3">Has escogido la Opción 3</p>
+    <p [id]="4" *ngSwitchCase="4">Has escogido la Opción 4</p>
+    <p *ngSwitchDefault class="cerrar"></p>
+</div>
+
+<div>
+    <input type="radio" name="opcion" (click)="escogerOpcion(1)" /> Opción 1
+    <input type="radio" name="opcion" (click)="escogerOpcion(2)" /> Opción 2
+    <input type="radio" name="opcion" (click)="escogerOpcion(3)" /> Opción 3
+    <input type="radio" name="opcion" (click)="escogerOpcion(4)" /> Opción 4
+    <input type="radio" selected="selected" name="opcion" (click)="escogerOpcion(0)" /> Ocultar
+</div>

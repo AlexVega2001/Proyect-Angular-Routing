@@ -1,0 +1,19 @@
+<div>
+    <h1 class="text-center mt-2">Tus Contactos</h1>
+    <hr>
+    <div class="container">
+        <div class="row d-flex justify-content-evenly align-items-center gap-3">
+            <div *ngFor="let contact of listContacts" 
+                class="card" style="width: 18rem;">
+                <img src="{{contact.avatar}}" class="card-img-top" alt="avatar" width="250" height="250">
+                <div class="card-body">
+                    <h5 class="card-title">{{ contact.name }}</h5>
+                    <p class="card-text">{{ contact.email }}</p>
+                    <button (click)="DetailContact(contact)" class="btn btn-primary">Ver más</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Listar todos los contactos para crear una navegación en cada uno de ellos -->
